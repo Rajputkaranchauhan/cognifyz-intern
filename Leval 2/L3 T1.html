@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        .gallery-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .thumbnail {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.2);
+        }
+
+        .enlarged-image {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .enlarged-image img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+        .slideshow-container {
+            max-width: 800px;
+            position: relative;
+            margin: auto;
+        }
+
+        .mySlides {
+            display: none;
+            width: 100%;
+        }
+
+        img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="gallery-container">
+    <img class="thumbnail" src="image 1.jpeg" onclick="showImage('image 1.jpeg')" alt="Image 1">
+    <img class="thumbnail" src="image 2.jpeg" onclick="showImage('image 2.jpeg')" alt="Image 2">
+    <img class="thumbnail" src="image 3.jpeg" onclick="showImage('image 3.jpeg')" alt="Image 3">
+    <img class="thumbnail" src="image 4.jpeg" onclick="showImage('image 4.jpeg')" alt="Image 4">
+    <img class="thumbnail" src="image 5.jpeg" onclick="showImage('image 5.jpeg')" alt="Image 5">
+    <img class="thumbnail" src="image 6.jpeg" onclick="showImage('image 6.jpeg')" alt="Image 6">
+    <img class="thumbnail" src="image 7.jpeg" onclick="showImage('image 7.jpeg')" alt="Image 7">
+    <img class="thumbnail" src="image 8.jpeg" onclick="showImage('image 8.jpeg')" alt="Image 8">
+    <img class="thumbnail" src="image 9.jpeg" onclick="showImage('image 9.jpeg')" alt="Image 9">
+
+</div>
+<br>
+
+<div class="enlarged-image" id="enlargedContainer" onclick="hideImage()">
+    <img id="enlargedImg" src="" alt="Enlarged Image">
+</div>
+<div class="slideshow-container">
+    <div class="mySlides">
+        <img src="slide 1.jpeg" alt="Slide 1">
+    </div>
+    <div class="mySlides">
+        <img src="slide 2.jpeg" alt="Slide 2">
+    </div>
+    <div class="mySlides">
+        <img src="slide 4.jpeg" alt="Slide 4">
+    </div>
+    <div class="mySlides">
+        <img src="slide 5.jpeg" alt="Slide 5">
+    </div>
+    <div class="mySlides">
+        <img src="slide 6.jpeg" alt="Slide 6">
+    </div>
+    <div class="mySlides">
+        <img src="slide 7.jpeg" alt="Slide 7">
+    </div>
+</div>
+
+<script>
+    function showImage(src) {
+        document.getElementById('enlargedImg').src = src;
+        document.getElementById('enlargedContainer').style.display = 'flex';
+    }
+
+    function hideImage() {
+        document.getElementById('enlargedContainer').style.display = 'none';
+    }
+
+    let slideIndex = 0;
+
+    function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+
+        slideIndex++;
+
+        if (slideIndex > slides.length) {
+            slideIndex = 1;
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout(showSlides, 2000); 
+    }
+
+    showSlides();
+</script>
+
+</body>
+</html>
